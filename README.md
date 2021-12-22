@@ -12,11 +12,11 @@ We can choose to rotate rectangles efficiently, or to not do so. We can specify 
 <h3>Compilation</h3>
 
 ```
-g++ packer.cpp Draw\ez-draw.cpp -O3 -o packer.exe -lgdi32
+g++ packer.cpp Draw\ez-draw.cpp -O3 -o packer -lgdi32
 ```
 
 ```
-packer.exe -help
+packer -help
 ```
 <h3>Complexity</h3>
 <kbd><img src="https://drive.google.com/uc?id=1mji6LxmmXzAA6rv9C1sTSRNm7m6cAUd1"></kbd>
