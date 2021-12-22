@@ -10,12 +10,12 @@ As we place the rectangles inside the holes, we break the antecedent hole into n
 We can choose to rotate rectangles efficiently, or to not do so. We can specify the width of the canvas (strip), specify the sorting strategies, etc.
 
 <br>
-Compilation:<br>
+### Compilation:<br>
 
 ```
 g++ packer.cpp Draw\ez-draw.cpp -O3 -o packer.exe -lgdi32
 ```
 <br>
-Complexity:
+### Complexity:
 <br><br>
 <kbd><img src="https://drive.google.com/uc?id=1mji6LxmmXzAA6rv9C1sTSRNm7m6cAUd1"></kbd>
