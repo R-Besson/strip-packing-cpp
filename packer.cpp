@@ -1276,15 +1276,15 @@ bool createNewHoles(SHAPE* Rectangle, SHAPE* Hole, SHAPES* Holes)
             if (newHole1 && !(newHole1->isCovered(Holes))) { 
                 newHole1->id = Manager.newHoleID();
                 newHole1->appendTo(Holes);
-            }
+            } else { delete newHole1; }
             if (newHole2 && !(newHole2->isCovered(Holes))) {
                 newHole2->id = Manager.newHoleID();
                 newHole2->appendTo(Holes);
-            }
+            } else { delete newHole2; }
             if (newHole3 && !(newHole3->isCovered(Holes))) {
                 newHole3->id = Manager.newHoleID();
                 newHole3->appendTo(Holes);
-            }
+            } else { delete newHole3; }
         } else {
             if (newHole1) delete newHole1;
             if (newHole2) delete newHole2;
