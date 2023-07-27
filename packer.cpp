@@ -318,7 +318,7 @@ bool SHAPE::Overlaps(SHAPE* Shape)
     return false; // No overlap detected
 }
 // isCovered : Shape1 (this) covered by some Shape in Shapes : Shape1->isCovered(Shapes, ExceptionShape);
-bool SHAPE::isCovered(SHAPES* Shapes, SHAPE* ExceptionShape)
+bool SHAPE::isCovered(SHAPES* Shapes)
 {
     // Iterates through all the shapes and checks if it is covered by a Shape AND
     // We also pass an argument 'ExceptionShape' if we are for example: Breaking a Shape into new Shapes
@@ -328,8 +328,6 @@ bool SHAPE::isCovered(SHAPES* Shapes, SHAPE* ExceptionShape)
     for (it = (*Shapes).begin(); it != (*Shapes).end(); it++)
     {
         SHAPE* shape = it->second;
-
-        if (ExceptionShape && this->sameAs(ExceptionShape)) continue;
         if (this->fitsIn(shape)) return true;
     }
     return false;
@@ -1273,19 +1271,24 @@ bool createNewHoles(SHAPE* Rectangle, SHAPE* Hole, SHAPES* Holes)
     // Delete previous completed Hole //
     // if (caseMet)
     // {
-        Hole->removeFrom(Holes);
-
-        if (newHole1 && !(newHole1->isCovered(Holes, Hole))) { 
-            newHole1->id = Manager.newHoleID();
-            newHole1->appendTo(Holes);
-        }
-        if (newHole2 && !(newHole2->isCovered(Holes, Hole))) {
-            newHole2->id = Manager.newHoleID();
-            newHole2->appendTo(Holes);
-        }
-        if (newHole3 && !(newHole3->isCovered(Holes, Hole))) {
-            newHole3->id = Manager.newHoleID();
-            newHole3->appendTo(Holes);
+        if (Hole->isCovered(Holes))
+        {
+            if (newHole1 && !(newHole1->isCovered(Holes))) { 
+                newHole1->id = Manager.newHoleID();
+                newHole1->appendTo(Holes);
+            } else { delete newHole1; }
+            if (newHole2 && !(newHole2->isCovered(Holes))) {
+                newHole2->id = Manager.newHoleID();
+                newHole2->appendTo(Holes);
+            } else { delete newHole2; }
+            if (newHole3 && !(newHole3->isCovered(Holes))) {
+                newHole3->id = Manager.newHoleID();
+                newHole3->appendTo(Holes);
+            } else { delete newHole3; }
+        } else {
+            if (newHole1) delete newHole1;
+            if (newHole2) delete newHole2;
+            if (newHole3) delete newHole3;
         }
 
         return true;
