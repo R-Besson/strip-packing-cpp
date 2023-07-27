@@ -1336,6 +1336,17 @@ void EZ::drawFilled(SHAPE* Rectangle)
     ScaledRectangle->x2 = Rectangle->x2*this->RECT_SCALE;
     ScaledRectangle->y2 = Rectangle->y2*this->RECT_SCALE;
 
+    // Prevent drawing rectangles out of the window!
+    int window_width;
+    int window_height;
+    ez_window_get_size(this->WINDOW, &window_width, &window_height)
+    if (
+        (ScaledRectangle->x1 + this->HORIZONTAL > window_width) ||
+        (ScaledRectangle->y1 + this->HORIZONTAL > window_height) ||
+        (ScaledRectangle->x2 + this->HORIZONTAL < 0) ||
+        (ScaledRectangle->y2 + this->HORIZONTAL < 0)
+    ) continue;
+
     if (this->RAINBOW) ez_set_color(Rectangle->Color);
     else ez_set_color(ez_green);
     
