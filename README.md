@@ -1,5 +1,7 @@
 # Strip Packing
 
+## This project is now ARCHIVED, a new entirely rewritten codebase can be found at the following repository: https://github.com/R-Besson/strip-packing-cpp-rewritten
+
 This repository contains implementations for the strip packing problem that can be found here: https://en.wikipedia.org/wiki/Strip_packing_problem
 
 The strip packing problem attempts to optimize the placing of rectangles in a strip of fixed width and variable height, such that the overall height of the strip is the smallest possible.
